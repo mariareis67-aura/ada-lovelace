@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ada Lovelace — A Primeira Programadora</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0b1020;
+      color: #f5f5f5;
+      line-height: 1.7;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background:
+        linear-gradient(rgba(8, 12, 30, 0.82), rgba(8, 12, 30, 0.95)),
+        radial-gradient(circle at center, #47346f, #0b1020 65%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "010101001101010011010101";
+      position: absolute;
+      color: rgba(180, 150, 255, 0.08);
+      font-family: monospace;
+      font-size: 30px;
+      letter-spacing: 10px;
+      transform: rotate(-20deg);
+      width: 150%;
+    }
+
+    .hero {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero .tag {
+      display: inline-block;
+      color: #d7b8ff;
+      border: 1px solid #8c63d9;
+      border-radius: 30px;
+      padding: 8px 20px;
+      margin-bottom: 25px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 25px;
+      text-shadow: 0 0 30px rgba(176, 120, 255, 0.5);
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      font-size: 1.2rem;
+      color: #d5d5e0;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 13px 28px;
+      border-radius: 30px;
+      background: #9b6bea;
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #b88cff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(155, 107, 234, 0.3);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9, 13, 30, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #272b44;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    nav a {
+      color: #cfcfe0;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: #332450;
+      color: white;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 90px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #a875ed;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+      font-size: 2.7rem;
+      margin-top: 10px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .portrait {
+      min-height: 430px;
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(155,107,234,.3), rgba(20,25,50,.8)),
+        #171c35;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #393256;
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    }
+
+    .portrait-text {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .portrait-text .initial {
+      font-size: 8rem;
+      color: #c29aff;
+      line-height: 1;
+    }
+
+    .portrait-text p {
+      color: #bcbccd;
+      font-family: Arial, sans-serif;
+    }
+
+    .text-content p {
+      color: #c9c9d4;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .highlight {
+      color: #d3b2ff;
+      font-weight: bold;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 3px;
+      top: 0;
+      bottom: 0;
+      background: linear-gradient(#8e5bdf, #392558);
+      transform: translateX(-50%);
+    }
+
+    .event {
+      width: 50%;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    .event:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .event:nth-child(even) {
+      left: 50%;
+    }
+
+    .event::after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 32px;
+      background: #ad7af1;
+      border: 4px solid #0b1020;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #ad7af1;
+    }
+
+    .event:nth-child(odd)::after {
+      right: -9px;
+    }
+
+    .event:nth-child(even)::after {
+      left: -7px;
+    }
+
+    .event-card {
+      background: #151a31;
+      border: 1px solid #292d49;
+      padding: 25px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      border-color: #8057c4;
+    }
+
+    .year {
+      color: #b786f5;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .event h3 {
+      margin: 8px 0;
+      font-size: 1.3rem;
+    }
+
+    .event p {
+      color: #b9bac8;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .algorithm {
+      background: linear-gradient(135deg, #17152c, #10172a);
+      border: 1px solid #403060;
+      border-radius: 25px;
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .algorithm-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .algorithm p {
+      max-width: 750px;
+      margin: auto;
+      color: #c6c6d2;
+      font-family: Arial, sans-serif;
+    }
+
+    .quote {
+      padding: 70px 30px;
+      text-align: center;
+      background: #12172b;
+      border-top: 1px solid #282d49;
+      border-bottom: 1px solid #282d49;
+    }
+
+    blockquote {
+      max-width: 800px;
+      margin: auto;
+      font-size: 2rem;
+      font-style: italic;
+      color: #e5d8f8;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 20px;
+      color: #9c9cac;
+      font-family: Arial, sans-serif;
+    }
+
+    .legacy {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #151a31;
+      border: 1px solid #292e4b;
+      border-radius: 18px;
+      padding: 30px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #8057c4;
+    }
+
+    .card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aaaebe;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      background: #070a15;
+      color: #858697;
+      font-family: Arial, sans-serif;
+    }
+
+    footer strong {
+      color: #b786f5;
+    }
+
+    @media (max-width: 800px) {
+      .intro {
+        grid-template-columns: 1fr;
+      }
+
+      .legacy {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .event,
+      .event:nth-child(even),
+      .event:nth-child(odd) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 0;
+      }
+
+      .event::after,
+      .event:nth-child(odd)::after,
+      .event:nth-child(even)::after {
+        left: 2px;
+        right: auto;
+      }
+
+      blockquote {
+        font-size: 1.5rem;
+      }
+
+      .algorithm {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="inicio">
+    <div class="hero">
+      <div class="tag">Pioneira da Computação</div>
+
+      <h1>Ada Lovelace</h1>
+
+      <p>
+        A mulher que imaginou o futuro da computação no século XIX
+        e deixou seu nome na história como uma das primeiras pessoas
+        a escrever um algoritmo para ser processado por uma máquina.
+      </p>
+
+      <a href="#historia" class="button">Conheça sua história ↓</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#historia">História</a></li>
+      <li><a href="#linha-do-tempo">Linha do tempo</a></li>
+      <li><a href="#algoritmo">Algoritmo</a></li>
+      <li><a href="#legado">Legado</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="historia">
+
+      <div class="section-title">
+        <span>A mulher por trás do código</span>
+        <h2>Quem foi Ada Lovelace?</h2>
+      </div>
+
+      <div class="intro">
+
+        <div class="portrait">
+          <div class="portrait-text">
+            <div class="initial">A</div>
+            <h2>Augusta Ada King</h2>
+            <p>Condessa de Lovelace</p>
+          </div>
+        </div>
+
+        <div class="text-content">
+
+          <p>
+            <span class="highlight">Augusta Ada King, Condessa de Lovelace</span>,
+            nasceu em Londres, em 10 de dezembro de 1815. Ela era filha do
+            famoso poeta Lord Byron e de Anne Isabella Milbanke.
+          </p>
+
+          <p>
+            Desde jovem, Ada demonstrou grande interesse por matemática,
+            ciência e invenções. Em uma época em que as mulheres tinham
+            pouco acesso à educação científica, ela recebeu uma formação
+            matemática incomum para seu período.
+          </p>
+
+          <p>
+            Seu trabalho mais famoso surgiu a partir de sua colaboração
+            intelectual com <span class="highlight">Charles Babbage</span>,
+            inventor da Máquina Analítica, um projeto de máquina mecânica
+            que antecipava vários conceitos dos computadores modernos.
+          </p>
+
+          <p>
+            Ada percebeu que a máquina poderia fazer muito mais do que
+            simplesmente realizar cálculos. Ela imaginou que máquinas
+            poderiam manipular símbolos e até produzir música ou arte,
+            uma ideia extremamente avançada para o século XIX.
+          </p>
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="linha-do-tempo">
+
+      <div class="section-title">
+        <span>Uma vida extraordinária</span>
+        <h2>Linha do tempo</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="event">
+          <div class="event-card">
+            <div class="year">1815</div>
+            <h3>Nasce Ada Lovelace</h3>
+            <p>
+              Augusta Ada Byron nasce em Londres, filha do poeta
+              Lord Byron e de Anne Isabella Milbanke.
+            </p>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="event-card">
+            <div class="year">1833</div>
+            <h3>Conhece Charles Babbage</h3>
+            <p>
+              Ada conhece Charles Babbage e demonstra grande interesse
+              por sua Máquina Diferencial.
+            </p>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="event-card">
+            <div class="year">1842–1843</div>
+            <h3>O trabalho sobre a Máquina Analítica</h3>
+            <p>
+              Ada traduz um artigo de Luigi Menabrea sobre a Máquina
+              Analítica e acrescenta suas próprias notas.
+            </p>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="event-card">
+            <div class="year">1843</div>
+            <h3>O famoso algoritmo</h3>
+            <p>
+              Em suas notas, Ada descreve um método para calcular
+              números de Bernoulli usando a Máquina Analítica.
+            </p>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="event-card">
+            <div class="year">1852</div>
+            <h3>Fim de sua vida</h3>
+            <p>
+              Ada Lovelace morre aos 36 anos, deixando uma contribuição
+              intelectual que seria reconhecida ainda mais no futuro.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="algoritmo">
+
+      <div class="section-title">
+        <span>O nascimento de uma ideia</span>
+        <h2>O algoritmo de Ada</h2>
+      </div>
+
+      <div class="algorithm">
+
+        <div class="algorithm-icon">⚙️</div>
+
+        <h2>Mais do que uma calculadora</h2>
+
+        <br>
+
+        <p>
+          Ao estudar a Máquina Analítica de Babbage, Ada percebeu que
+          uma máquina poderia seguir uma sequência de instruções para
+          realizar uma tarefa complexa.
+        </p>
+
+        <br>
+
+        <p>
+          Suas notas incluíram um algoritmo para calcular os
+          <strong>números de Bernoulli</strong>. Por isso, Ada Lovelace
+          é frequentemente reconhecida como a primeira programadora
+          da história.
+        </p>
+
+      </div>
+
+    </section>
+
+    <div class="quote">
+
+      <blockquote>
+        “A máquina pode fazer qualquer coisa que saibamos ordenar que ela faça.”
+      </blockquote>
+
+      <small>
+        — Ideia associada ao trabalho de Ada Lovelace sobre a Máquina Analítica
+      </small>
+
+    </div>
+
+    <section id="legado">
+
+      <div class="section-title">
+        <span>Um legado que atravessou séculos</span>
+        <h2>Por que Ada é importante?</h2>
+      </div>
+
+      <div class="legacy">
+
+        <div class="card">
+          <div class="icon">💻</div>
+          <h3>Programação</h3>
+          <p>
+            Seu trabalho antecipou conceitos fundamentais da programação
+            e dos computadores modernos.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🧠</div>
+          <h3>Visão de futuro</h3>
+          <p>
+            Ada imaginou que computadores poderiam trabalhar com símbolos,
+            música e outras formas de informação.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">👩‍🔬</div>
+          <h3>Inspiração</h3>
+          <p>
+            Sua história continua inspirando mulheres e estudantes
+            interessados em ciência, matemática e tecnologia.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      Site educativo sobre <strong>Ada Lovelace</strong>
+    </p>
+
+    <p>
+      Criado para estudo e divulgação da história da computação.
+    </p>
+
+    <br>
+
+    <p>© 2026 — Ada Lovelace</p>
+  </footer>
+
+  <script>
+    // Pequeno efeito de aparecimento das seções
+    const cards = document.querySelectorAll(
+      '.event-card, .card, .algorithm, .portrait'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(25px)';
+      card.style.transition = 'opacity .7s ease, transform .7s ease';
+      observer.observe(card);
+    });
+  </script>
+
+</body>
+</html>
