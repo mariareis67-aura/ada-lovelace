@@ -165,27 +165,35 @@
     }
 
     .portrait {
-      min-height: 430px;
       border-radius: 20px;
       background:
         linear-gradient(145deg, rgba(155,107,234,.3), rgba(20,25,50,.8)),
         #171c35;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       border: 1px solid #393256;
       box-shadow: 0 20px 50px rgba(0,0,0,.3);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
     }
 
     .portrait-text {
       text-align: center;
-      padding: 30px;
+      padding-top: 15px;
     }
 
-    .portrait-text .initial {
-      font-size: 8rem;
-      color: #c29aff;
-      line-height: 1;
+    .portrait-text h2 {
+      font-size: 1.5rem;
+      color: #d7b8ff;
     }
 
     .portrait-text p {
@@ -287,25 +295,29 @@
       font-size: 14px;
     }
 
-    .algorithm {
+    .algorithm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
       background: linear-gradient(135deg, #17152c, #10172a);
       border: 1px solid #403060;
       border-radius: 25px;
-      padding: 50px;
-      text-align: center;
+      padding: 40px;
       box-shadow: 0 20px 60px rgba(0,0,0,.25);
     }
 
-    .algorithm-icon {
-      font-size: 4rem;
-      margin-bottom: 20px;
-    }
-
-    .algorithm p {
-      max-width: 750px;
-      margin: auto;
+    .algorithm-text p {
       color: #c6c6d2;
       font-family: Arial, sans-serif;
+      margin-bottom: 15px;
+    }
+
+    .algorithm-image img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #393256;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
     }
 
     .quote {
@@ -351,9 +363,13 @@
       border-color: #8057c4;
     }
 
-    .card .icon {
-      font-size: 2.5rem;
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
       margin-bottom: 15px;
+      border: 1px solid #393256;
     }
 
     .card h3 {
@@ -379,7 +395,7 @@
     }
 
     @media (max-width: 800px) {
-      .intro {
+      .intro, .algorithm-grid {
         grid-template-columns: 1fr;
       }
 
@@ -410,10 +426,6 @@
 
       blockquote {
         font-size: 1.5rem;
-      }
-
-      .algorithm {
-        padding: 30px 20px;
       }
     }
   </style>
@@ -459,42 +471,30 @@
       <div class="intro">
 
         <div class="portrait">
+          <img src="https://raw.githubusercontent.com/github/explore/80f119e9319a224a0d92723c348be8848a58e578/topics/ada/ada.png" alt="Retrato de Ada Lovelace">
           <div class="portrait-text">
-            <div class="initial">A</div>
             <h2>Augusta Ada King</h2>
-            <p>Condessa de Lovelace</p>
+            <p>Condessa de Lovelace (1815–1852)</p>
           </div>
         </div>
 
         <div class="text-content">
-          <img src="https://raw.githubusercontent.com/github/explore/80f119e9319a224a0d92723c348be8848a58e578/topics/ada/ada.png" alt="Retrato de Ada Lovelace" style="width: 100%; max-width: 300px; border-radius: 12px; margin-bottom: 20px; display: block;">
           <p>
             <span class="highlight">Augusta Ada King, Condessa de Lovelace</span>,
-            nasceu em Londres, em 10 de dezembro de 1815. Ela era filha do
-            famoso poeta Lord Byron e de Anne Isabella Milbanke.
+            nasceu em Londres, em 10 de dezembro de 1815. Filha do lendário poeta romântico Lord Byron e da matemática Anne Isabella Milbanke, sua criação seguiu um caminho incomum. Para afastar a filha das "loucuras poéticas" do pai, sua mãe garantiu que Ada recebesse uma educação rigorosa focada em lógica, ciências e matemática.
           </p>
 
           <p>
-            Desde jovem, Ada demonstrou grande interesse por matemática,
-            ciência e invenções. Em uma época em que as mulheres tinham
-            pouco acesso à educação científica, ela recebeu uma formação
-            matemática incomum para seu período.
+            Dotada de uma mente brilhante e de uma imaginação fértil, Ada combinou a intuição artística com a precisão científica — um conceito que ela mesma denominava de <span class="highlight">"ciência poética"</span>. Essa visão única permitiu que ela enxergasse soluções e aplicações tecnológicas muito além do conhecimento de sua época.
           </p>
 
           <p>
-            Seu trabalho mais famoso surgiu a partir de sua colaboração
-            intelectual com <span class="highlight">Charles Babbage</span>,
-            inventor da Máquina Analítica, um projeto de máquina mecânica
-            que antecipava vários conceitos dos computadores modernos.
+            Seu trabalho mais famoso surgiu da parceria intelectual com <span class="highlight">Charles Babbage</span>, o inventor da Máquina Analítica. Enquanto Babbage enxergava o dispositivo apenas como um calculador numérico gigante, Ada percebeu algo revolucionário: a máquina era capaz de manipular qualquer tipo de símbolo regido por regras.
           </p>
 
           <p>
-            Ada percebeu que a máquina poderia fazer muito mais do que
-            simplesmente realizar cálculos. Ela imaginou que máquinas
-            poderiam manipular símbolos e até produzir música ou arte,
-            uma ideia extremamente avançada para o século XIX.
+            Ela previu que computadores poderiam criar composições musicais complexas, produzir gráficos elaborados e auxiliar a humanidade em tarefas científicas integradas, fundamentando os pilares do que hoje conhecemos como ciência da computação moderna.
           </p>
-
         </div>
       </div>
 
@@ -512,10 +512,9 @@
         <div class="event">
           <div class="event-card">
             <div class="year">1815</div>
-            <h3>Nasce Ada Lovelace</h3>
+            <h3>Nascimento e Juventude</h3>
             <p>
-              Augusta Ada Byron nasce em Londres, filha do poeta
-              Lord Byron e de Anne Isabella Milbanke.
+              Nasce em Londres. Criada sob forte tutela educacional em matemática pela mãe, desenvolveu fascínio por mecânica e projetos de máquinas voadoras desde a infância.
             </p>
           </div>
         </div>
@@ -523,10 +522,9 @@
         <div class="event">
           <div class="event-card">
             <div class="year">1833</div>
-            <h3>Conhece Charles Babbage</h3>
+            <h3>O Encontro com Babbage</h3>
             <p>
-              Ada conhece Charles Babbage e demonstra grande interesse
-              por sua Máquina Diferencial.
+              Aos 17 anos, é apresentada a Charles Babbage. Impressionado por seu raciocínio lógico, ele a apelida de "A Encantadora de Números".
             </p>
           </div>
         </div>
@@ -534,10 +532,9 @@
         <div class="event">
           <div class="event-card">
             <div class="year">1842–1843</div>
-            <h3>O trabalho sobre a Máquina Analítica</h3>
+            <h3>As Notas Históricas</h3>
             <p>
-              Ada traduz um artigo de Luigi Menabrea sobre a Máquina
-              Analítica e acrescenta suas próprias notas.
+              Traduz o artigo sobre a Máquina Analítica escrito por Luigi Menabrea. Ada adiciona extensas notas explicativas ("Notes") que triplicam o tamanho do texto original.
             </p>
           </div>
         </div>
@@ -545,10 +542,9 @@
         <div class="event">
           <div class="event-card">
             <div class="year">1843</div>
-            <h3>O famoso algoritmo</h3>
+            <h3>O Primeiro Algoritmo</h3>
             <p>
-              Em suas notas, Ada descreve um método para calcular
-              números de Bernoulli usando a Máquina Analítica.
+              Na famosa "Nota G", ela detalha passo a passo a sequência lógica necessária para a máquina calcular os Números de Bernoulli, criando o primeiro programa de computador.
             </p>
           </div>
         </div>
@@ -556,10 +552,9 @@
         <div class="event">
           <div class="event-card">
             <div class="year">1852</div>
-            <h3>Fim de sua vida</h3>
+            <h3>Eternização do Legado</h3>
             <p>
-              Ada Lovelace morre aos 36 anos, deixando uma contribuição
-              intelectual que seria reconhecida ainda mais no futuro.
+              Falece prematuramente aos 36 anos. Seu trabalho permaneceu esquecido por quase um século até ser redescoberto na era dos computadores eletrônicos.
             </p>
           </div>
         </div>
@@ -575,28 +570,22 @@
         <h2>O algoritmo de Ada</h2>
       </div>
 
-      <div class="algorithm">
+      <div class="algorithm-grid">
 
-        <div class="algorithm-icon">⚙️</div>
+        <div class="algorithm-text">
+          <h2>Além dos Números</h2>
+          <br>
+          <p>
+            A contribuição mais célebre de Ada foi a inclusão da <strong>Nota G</strong> em seus escritos de 1843. Nela, Ada criou um diagrama detalhado demonstrando como utilizar cartões perfurados para instruir a Máquina Analítica a calcular uma sequência de <strong>Números de Bernoulli</strong>.
+          </p>
+          <p>
+            Este algoritmo não era uma mera fórmula matemática: continha loops de repetição, condicionais e estruturas de memória — elementos essenciais de qualquer linguagem de programação moderna.
+          </p>
+        </div>
 
-        <h2>Mais do que uma calculadora</h2>
-
-        <br>
-
-        <p>
-          Ao estudar a Máquina Analítica de Babbage, Ada percebeu que
-          uma máquina poderia seguir uma sequência de instruções para
-          realizar uma tarefa complexa.
-        </p>
-
-        <br>
-
-        <p>
-          Suas notas incluíram um algoritmo para calcular os
-          <strong>números de Bernoulli</strong>. Por isso, Ada Lovelace
-          é frequentemente reconhecida como a primeira programadora
-          da história.
-        </p>
+        <div class="algorithm-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Diagram_for_the_computation_of_Bernoulli_numbers.png" alt="Tabela do Algoritmo de Ada Lovelace para calcular números de Bernoulli">
+        </div>
 
       </div>
 
@@ -605,11 +594,11 @@
     <div class="quote">
 
       <blockquote>
-        “A máquina pode fazer qualquer coisa que saibamos ordenar que ela faça.”
+        “A Máquina Analítica tece padrões algébricos da mesma forma que o tear de Jacquard tece flores e folhas.”
       </blockquote>
 
       <small>
-        — Ideia associada ao trabalho de Ada Lovelace sobre a Máquina Analítica
+        — Ada Lovelace, em suas Notas sobre a Máquina Analítica (1843)
       </small>
 
     </div>
@@ -618,35 +607,32 @@
 
       <div class="section-title">
         <span>Um legado que atravessou séculos</span>
-        <h2>Por que Ada é importante?</h2>
+        <h2>Impacto e Reconhecimento</h2>
       </div>
 
       <div class="legacy">
 
         <div class="card">
-          <div class="icon">💻</div>
-          <h3>Programação</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AnalyticalMachine_Babbage_London.jpg/800px-AnalyticalMachine_Babbage_London.jpg" alt="Máquina Analítica de Charles Babbage">
+          <h3>Máquina Analítica</h3>
           <p>
-            Seu trabalho antecipou conceitos fundamentais da programação
-            e dos computadores modernos.
+            Seus estudos ajudaram a provar o valor prático dos projetos mecânicos de Babbage, antecipando o conceito de Hardware e Software funcionando juntos.
           </p>
         </div>
 
         <div class="card">
-          <div class="icon">🧠</div>
-          <h3>Visão de futuro</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/ thumb/8/87/Ada_Lovelace_color.svg/800px-Ada_Lovelace_color.svg.png" alt="Linguagem Ada">
+          <h3>Linguagem Ada</h3>
           <p>
-            Ada imaginou que computadores poderiam trabalhar com símbolos,
-            música e outras formas de informação.
+            Em 1980, o Departamento de Defesa dos EUA nomeou sua nova linguagem de programação de alto padrão como "Ada" em sua homenagem.
           </p>
         </div>
 
         <div class="card">
-          <div class="icon">👩‍🔬</div>
-          <h3>Inspiração</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ada_Lovelace_daguerreotype_crop.jpg/800px-Ada_Lovelace_daguerreotype_crop.jpg" alt="Daguerreótipo de Ada Lovelace">
+          <h3>Dia de Ada Lovelace</h3>
           <p>
-            Sua história continua inspirando mulheres e estudantes
-            interessados em ciência, matemática e tecnologia.
+            Anualmente, na segunda terça-feira de outubro, celebra-se o "Ada Lovelace Day", incentivando o protagonismo feminino na tecnologia e ciência.
           </p>
         </div>
 
@@ -671,9 +657,8 @@
   </footer>
 
   <script>
-    // Pequeno efeito de aparecimento das seções
     const cards = document.querySelectorAll(
-      '.event-card, .card, .algorithm, .portrait'
+      '.event-card, .card, .algorithm-grid, .portrait'
     );
 
     const observer = new IntersectionObserver((entries) => {
